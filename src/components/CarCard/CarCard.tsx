@@ -1,14 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import type { Car } from "@/types/car";
-import styles from "./CarCard.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import type { Car } from '@/types/car';
+import styles from './CarCard.module.css';
 
 interface CarCardProps {
   car: Car;
 }
 
 export default function CarCard({ car }: CarCardProps) {
-  const formattedMileage = car.mileage.toLocaleString("uk-UA");
+  const formattedMileage = car.mileage.toLocaleString('uk-UA');
 
   return (
     <article className={styles.card}>
@@ -22,7 +22,7 @@ export default function CarCard({ car }: CarCardProps) {
 
       <div className={styles.heading}>
         <h2 className={styles.title}>
-          {car.brand} <span className={styles.model}>{car.model}</span>,{" "}
+          {car.brand} <span className={styles.model}>{car.model}</span>,{' '}
           {car.year}
         </h2>
 

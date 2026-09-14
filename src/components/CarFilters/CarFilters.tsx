@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Field, Form, Formik } from "formik";
-import { useQuery } from "@tanstack/react-query";
-import { IoChevronDown } from "react-icons/io5";
-import { fetchCarsFilters, type CarsQueryParams } from "@/services/carService";
-import styles from "./CarFilters.module.css";
+import { Field, Form, Formik } from 'formik';
+import { useQuery } from '@tanstack/react-query';
+import { IoChevronDown } from 'react-icons/io5';
+import { fetchCarsFilters, type CarsQueryParams } from '@/services/carService';
+import styles from './CarFilters.module.css';
 
 interface CarFiltersProps {
-  onSearch: (filters: Omit<CarsQueryParams, "page">) => void;
+  onSearch: (filters: Omit<CarsQueryParams, 'page'>) => void;
 }
 
 interface FilterValues {
@@ -18,15 +18,15 @@ interface FilterValues {
 }
 
 const initialValues: FilterValues = {
-  brand: "",
-  price: "",
-  minMileage: "",
-  maxMileage: "",
+  brand: '',
+  price: '',
+  minMileage: '',
+  maxMileage: '',
 };
 
 export default function CarFilters({ onSearch }: CarFiltersProps) {
   const { data: filtersData } = useQuery({
-    queryKey: ["carsFilters"],
+    queryKey: ['carsFilters'],
     queryFn: fetchCarsFilters,
   });
 
@@ -79,7 +79,7 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
 
             <span className={styles.selectWrapper}>
               <span className={styles.priceValue} aria-hidden="true">
-                {values.price ? `To $${values.price}` : "Choose a price"}
+                {values.price ? `To $${values.price}` : 'Choose a price'}
               </span>
 
               <Field

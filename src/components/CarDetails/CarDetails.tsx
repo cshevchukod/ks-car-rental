@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import {
   IoCalendarOutline,
   IoCarSportOutline,
@@ -7,17 +7,17 @@ import {
   IoSettingsOutline,
   IoSpeedometerOutline,
   IoWaterOutline,
-} from "react-icons/io5";
-import type { Car } from "@/types/car";
-import styles from "./CarDetails.module.css";
-import BookingForm from "@/components/BookingForm/BookingForm";
+} from 'react-icons/io5';
+import type { Car } from '@/types/car';
+import styles from './CarDetails.module.css';
+import BookingForm from '@/components/BookingForm/BookingForm';
 
 interface CarDetailsProps {
   car: Car;
 }
 
 export default function CarDetails({ car }: CarDetailsProps) {
-  const formattedMileage = car.mileage.toLocaleString("uk-UA");
+  const formattedMileage = car.mileage.toLocaleString('uk-UA');
 
   return (
     <section className={styles.section}>

@@ -1,8 +1,8 @@
-import axios from "axios";
-import type { Car, CarsFilters, CarsResponse } from "@/types/car";
+import axios from 'axios';
+import type { Car, CarsFilters, CarsResponse } from '@/types/car';
 
 const api = axios.create({
-  baseURL: "https://car-rental-api.goit.study",
+  baseURL: 'https://car-rental-api.goit.study',
 });
 
 export interface CarsQueryParams {
@@ -22,15 +22,18 @@ export interface BookingRequest {
 export async function fetchCars(
   params: CarsQueryParams,
 ): Promise<CarsResponse> {
-  const response = await api.get<CarsResponse>("/cars", {
-    params,
+  const response = await api.get<CarsResponse>('/cars', {
+    params: {
+      ...params,
+      perPage: 12,
+    },
   });
 
   return response.data;
 }
 
 export async function fetchCarsFilters(): Promise<CarsFilters> {
-  const response = await api.get<CarsFilters>("/cars/filters");
+  const response = await api.get<CarsFilters>('/cars/filters');
 
   return response.data;
 }

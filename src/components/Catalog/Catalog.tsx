@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import CarCard from "@/components/CarCard/CarCard";
-import CarFilters from "@/components/CarFilters/CarFilters";
-import { fetchCars, type CarsQueryParams } from "@/services/carService";
-import styles from "./Catalog.module.css";
+import { useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import CarCard from '@/components/CarCard/CarCard';
+import CarFilters from '@/components/CarFilters/CarFilters';
+import { fetchCars, type CarsQueryParams } from '@/services/carService';
+import styles from './Catalog.module.css';
 
-type AppliedFilters = Omit<CarsQueryParams, "page">;
+type AppliedFilters = Omit<CarsQueryParams, 'page'>;
 
 export default function Catalog() {
   const [filters, setFilters] = useState<AppliedFilters>({});
@@ -20,7 +20,7 @@ export default function Catalog() {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["cars", filters],
+    queryKey: ['cars', filters],
     queryFn: ({ pageParam }) =>
       fetchCars({
         page: pageParam,
@@ -68,7 +68,7 @@ export default function Catalog() {
                 onClick={() => fetchNextPage()}
                 disabled={isFetchingNextPage}
               >
-                {isFetchingNextPage ? "Loading..." : "Load more"}
+                {isFetchingNextPage ? 'Loading...' : 'Load more'}
               </button>
             )}
           </>

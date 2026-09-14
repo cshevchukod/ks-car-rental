@@ -150,8 +150,13 @@
   display: block;
 }
 
-.priceSelect {
-  color: transparent;
+.select option {
+  color: #8d929a;
+  background-color: #ffffff;
+}
+
+.select option:checked {
+  color: #101828;
 }
 
 .priceSelect option {

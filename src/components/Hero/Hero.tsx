@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./Hero.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './Hero.module.css';
 
 export default function Hero() {
   return (

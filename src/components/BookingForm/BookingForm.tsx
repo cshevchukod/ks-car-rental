@@ -1,44 +1,44 @@
-"use client";
+'use client';
 
-import { useMutation } from "@tanstack/react-query";
-import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from "formik";
-import { IoAlertCircleOutline } from "react-icons/io5";
-import { Toaster, toast } from "react-hot-toast";
-import * as Yup from "yup";
+import { useMutation } from '@tanstack/react-query';
+import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik';
+import { IoAlertCircleOutline } from 'react-icons/io5';
+import { Toaster, toast } from 'react-hot-toast';
+import * as Yup from 'yup';
 
 import {
   createBookingRequest,
   type BookingRequest,
-} from "@/services/carService";
+} from '@/services/carService';
 
-import styles from "./BookingForm.module.css";
+import styles from './BookingForm.module.css';
 
 interface BookingFormProps {
   carId: string;
 }
 
 const initialValues: BookingRequest = {
-  name: "",
-  email: "",
-  comment: "",
+  name: '',
+  email: '',
+  comment: '',
 };
 
 const validationSchema = Yup.object({
   name: Yup.string()
     .trim()
-    .min(2, "Please enter your full name.")
+    .min(2, 'Please enter your full name.')
     .matches(
       /^[\p{L}]+(?:[ '\u2019-][\p{L}]+)*$/u,
-      "Please enter your full name.",
+      'Please enter your full name.',
     )
-    .required("Please enter your full name."),
+    .required('Please enter your full name.'),
 
   email: Yup.string()
     .trim()
-    .email("Please enter your email.")
-    .required("Please enter your email."),
+    .email('Please enter your email.')
+    .required('Please enter your email.'),
 
-  comment: Yup.string().trim().required("Comment is required"),
+  comment: Yup.string().trim().required('Comment is required'),
 });
 
 export default function BookingForm({ carId }: BookingFormProps) {
@@ -53,10 +53,10 @@ export default function BookingForm({ carId }: BookingFormProps) {
     try {
       await bookingMutation.mutateAsync(values);
 
-      toast.success("Your booking request has been sent!");
+      toast.success('Your booking request has been sent!');
       actions.resetForm();
     } catch {
-      toast.error("Failed to send booking request.");
+      toast.error('Failed to send booking request.');
     } finally {
       actions.setSubmitting(false);
     }
@@ -105,14 +105,14 @@ export default function BookingForm({ carId }: BookingFormProps) {
                     <Field
                       id="booking-name"
                       className={`${styles.input} ${
-                        nameHasError ? styles.inputError : ""
+                        nameHasError ? styles.inputError : ''
                       }`}
                       type="text"
                       name="name"
-                      placeholder={nameHasError ? "Name" : "Name*"}
+                      placeholder={nameHasError ? 'Name' : 'Name*'}
                       autoComplete="name"
                       aria-invalid={nameHasError}
-                      aria-describedby={nameHasError ? "name-error" : undefined}
+                      aria-describedby={nameHasError ? 'name-error' : undefined}
                     />
 
                     {nameHasError && (
@@ -145,15 +145,15 @@ export default function BookingForm({ carId }: BookingFormProps) {
                     <Field
                       id="booking-email"
                       className={`${styles.input} ${
-                        emailHasError ? styles.inputError : ""
+                        emailHasError ? styles.inputError : ''
                       }`}
                       type="email"
                       name="email"
-                      placeholder={emailHasError ? "Email" : "Email*"}
+                      placeholder={emailHasError ? 'Email' : 'Email*'}
                       autoComplete="email"
                       aria-invalid={emailHasError}
                       aria-describedby={
-                        emailHasError ? "email-error" : undefined
+                        emailHasError ? 'email-error' : undefined
                       }
                     />
 
@@ -184,13 +184,13 @@ export default function BookingForm({ carId }: BookingFormProps) {
                       id="booking-comment"
                       as="textarea"
                       className={`${styles.textarea} ${
-                        commentHasError ? styles.inputError : ""
+                        commentHasError ? styles.inputError : ''
                       }`}
                       name="comment"
                       placeholder="Comment"
                       aria-invalid={commentHasError}
                       aria-describedby={
-                        commentHasError ? "comment-error" : undefined
+                        commentHasError ? 'comment-error' : undefined
                       }
                     />
 
@@ -216,7 +216,7 @@ export default function BookingForm({ carId }: BookingFormProps) {
                   disabled={isSubmitting || bookingMutation.isPending}
                   aria-busy={bookingMutation.isPending}
                 >
-                  {bookingMutation.isPending ? "Sending..." : "Send"}
+                  {bookingMutation.isPending ? 'Sending...' : 'Send'}
                 </button>
               </Form>
             </section>

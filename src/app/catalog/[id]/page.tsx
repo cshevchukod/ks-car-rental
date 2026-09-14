@@ -1,5 +1,5 @@
-import CarDetails from "@/components/CarDetails/CarDetails";
-import { fetchCarById } from "@/services/carService";
+import CarDetails from '@/components/CarDetails/CarDetails';
+import { fetchCarById } from '@/services/carService';
 
 interface CarDetailsPageProps {
   params: Promise<{

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import styles from "./Header.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import styles from './Header.module.css';
 
 export default function Header() {
   const pathname = usePathname();
-  const isCatalogPage = pathname.startsWith("/catalog");
+  const isCatalogPage = pathname.startsWith('/catalog');
 
   return (
     <header className={styles.header}>
@@ -28,9 +28,9 @@ export default function Header() {
               <Link
                 href="/"
                 className={`${styles.navLink} ${
-                  pathname === "/" ? styles.active : ""
+                  pathname === '/' ? styles.active : ''
                 }`}
-                aria-current={pathname === "/" ? "page" : undefined}
+                aria-current={pathname === '/' ? 'page' : undefined}
               >
                 Home
               </Link>
@@ -40,9 +40,9 @@ export default function Header() {
               <Link
                 href="/catalog"
                 className={`${styles.navLink} ${
-                  isCatalogPage ? styles.active : ""
+                  isCatalogPage ? styles.active : ''
                 }`}
-                aria-current={isCatalogPage ? "page" : undefined}
+                aria-current={isCatalogPage ? 'page' : undefined}
               >
                 Catalog
               </Link>

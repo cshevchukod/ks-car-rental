@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import { Manrope } from "next/font/google";
-import Header from "@/components/Header/Header";
-import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
-import "./globals.css";
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import { Manrope } from 'next/font/google';
+import Header from '@/components/Header/Header';
+import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import './globals.css';
 
 const manrope = Manrope({
-  subsets: ["latin"],
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "RentalCar",
-  description: "Find and rent the perfect car for your journey",
+  title: 'RentalCar',
+  description: 'Find and rent the perfect car for your journey',
 };
 
 interface RootLayoutProps {
