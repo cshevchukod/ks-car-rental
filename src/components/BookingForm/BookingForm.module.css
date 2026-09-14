@@ -23,7 +23,7 @@
 .title {
   margin: 0;
   color: #101828;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -32,7 +32,7 @@
 .subtitle {
   margin: 0;
   color: #8d929a;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -66,7 +66,7 @@
   width: 100%;
   padding: 12px 20px;
   color: #101828;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
@@ -120,7 +120,7 @@
 .errorMessage {
   margin-top: 4px;
   color: #ff4d4f;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -134,7 +134,7 @@
   height: 44px;
   padding: 12px 99px;
   color: #ffffff;
-  font-family: "Manrope", sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
