@@ -8,7 +8,7 @@ const api = axios.create({
 export interface CarsQueryParams {
   page: number;
   brand?: string;
-  rentalPrice?: number;
+  price?: number;
   minMileage?: number;
   maxMileage?: number;
 }

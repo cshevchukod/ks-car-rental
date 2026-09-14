@@ -19,22 +19,29 @@
 }
 
 .loadMore {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 156px;
+  height: 44px;
   margin: 80px auto 0;
   padding: 0;
-  color: #00aad4;
+  color: #101828;
   background-color: transparent;
-  border: none;
+  border: 1px solid #00aad4;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  text-decoration: underline;
-  transition: color 250ms ease;
+  transition:
+    color 250ms ease,
+    background-color 250ms ease;
 }
 
 .loadMore:hover,
 .loadMore:focus {
-  color: #0095ba;
+  color: #ffffff;
+  background-color: #00aad4;
 }
 
 .loadMore:disabled {
@@ -43,6 +50,6 @@
 }
 
 .message {
-  margin-top: 84px;
+  color: #101828;
   text-align: center;
 }
