@@ -1,13 +1,12 @@
 "use client";
 
 import { Field, Form, Formik } from "formik";
+import { useQuery } from "@tanstack/react-query";
 import { IoChevronDown } from "react-icons/io5";
-import type { CarsQueryParams } from "@/services/carService";
+import { fetchCarsFilters, type CarsQueryParams } from "@/services/carService";
 import styles from "./CarFilters.module.css";
 
 interface CarFiltersProps {
-  brands: string[];
-  prices: number[];
   onSearch: (filters: Omit<CarsQueryParams, "page">) => void;
 }
 
@@ -25,11 +24,25 @@ const initialValues: FilterValues = {
   maxMileage: "",
 };
 
-export default function CarFilters({
-  brands,
-  prices,
-  onSearch,
-}: CarFiltersProps) {
+export default function CarFilters({ onSearch }: CarFiltersProps) {
+  const { data: filtersData } = useQuery({
+    queryKey: ["carsFilters"],
+    queryFn: fetchCarsFilters,
+  });
+
+  const brands = filtersData?.brands ?? [];
+
+  const prices = filtersData
+    ? Array.from(
+        {
+          length:
+            Math.floor((filtersData.price.max - filtersData.price.min) / 10) +
+            1,
+        },
+        (_, index) => filtersData.price.min + index * 10,
+      )
+    : [];
+
   const handleSubmit = (values: FilterValues) => {
     onSearch({
       brand: values.brand || undefined,

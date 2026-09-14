@@ -42,12 +42,7 @@ export default function CarCard({ car }: CarCardProps) {
         </div>
       </div>
 
-      <Link
-        href={`/catalog/${car.id}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.button}
-      >
+      <Link href={`/catalog/${car.id}`} className={styles.button}>
         Read more
       </Link>
     </article>
