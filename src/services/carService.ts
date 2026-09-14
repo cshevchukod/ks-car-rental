@@ -13,6 +13,12 @@ export interface CarsQueryParams {
   maxMileage?: number;
 }
 
+export interface BookingRequest {
+  name: string;
+  email: string;
+  comment: string;
+}
+
 export async function fetchCars(
   params: CarsQueryParams,
 ): Promise<CarsResponse> {
@@ -31,6 +37,15 @@ export async function fetchCarsFilters(): Promise<CarsFilters> {
 
 export async function fetchCarById(id: string): Promise<Car> {
   const response = await api.get<Car>(`/cars/${id}`);
+
+  return response.data;
+}
+
+export async function createBookingRequest(
+  carId: string,
+  data: BookingRequest,
+) {
+  const response = await api.post(`/cars/${carId}/booking-requests`, data);
 
   return response.data;
 }
