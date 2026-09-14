@@ -166,15 +166,25 @@
 
 .priceValue {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 18px;
+  top: 1px;
+  right: 40px;
+  bottom: 1px;
+  left: 1px;
   z-index: 1;
 
   display: flex;
   align-items: center;
+  padding-left: 15px;
+  overflow: hidden;
 
   color: #101828;
+  background-color: #ffffff;
+  border-radius: 11px 0 0 11px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -187,7 +197,6 @@
   transform: translateY(-50%);
   pointer-events: none;
 }
-
 .mileageInputsError {
   box-shadow: 0 0 0 1px #ec383b;
 }
