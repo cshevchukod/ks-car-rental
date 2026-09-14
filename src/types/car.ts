@@ -12,7 +12,7 @@ export interface Car {
   type: string;
   img: string;
   description: string;
-  fuelConsumption: string;
+  fuelConsumption: number;
   engine: string;
   rentalPrice: string;
   rentalCompany: string;

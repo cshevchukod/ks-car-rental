@@ -1,0 +1,89 @@
+.page {
+  display: flex;
+  min-height: calc(100vh - 68px);
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  background-color: #f2f4f7;
+}
+
+.content {
+  display: flex;
+  max-width: 480px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  color: #101828;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.text {
+  margin: 0;
+  color: #8d929a;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.retryButton,
+.catalogLink {
+  display: flex;
+  width: 160px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  transition:
+    color 250ms ease,
+    background-color 250ms ease;
+}
+
+.retryButton {
+  color: #ffffff;
+  background-color: #00aad4;
+  border: none;
+}
+
+.retryButton:hover,
+.retryButton:focus {
+  background-color: #0095ba;
+}
+
+.catalogLink {
+  color: #101828;
+  background-color: #ffffff;
+}
+
+.catalogLink:hover,
+.catalogLink:focus {
+  color: #00aad4;
+}
+
+@media (max-width: 420px) {
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .retryButton,
+  .catalogLink {
+    width: 100%;
+  }
+}

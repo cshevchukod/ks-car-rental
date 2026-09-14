@@ -24,6 +24,32 @@ const initialValues: FilterValues = {
   maxMileage: '',
 };
 
+const validateFilters = (values: FilterValues) => {
+  const errors: Partial<Record<keyof FilterValues, string>> = {};
+
+  const minMileage =
+    values.minMileage === '' ? undefined : Number(values.minMileage);
+
+  const maxMileage =
+    values.maxMileage === '' ? undefined : Number(values.maxMileage);
+
+  if (
+    (minMileage !== undefined && minMileage < 0) ||
+    (maxMileage !== undefined && maxMileage < 0)
+  ) {
+    errors.maxMileage = 'Mileage cannot be negative.';
+  } else if (
+    minMileage !== undefined &&
+    maxMileage !== undefined &&
+    maxMileage < minMileage
+  ) {
+    errors.maxMileage =
+      'Maximum mileage must be greater than or equal to minimum mileage.';
+  }
+
+  return errors;
+};
+
 export default function CarFilters({ onSearch }: CarFiltersProps) {
   const { data: filtersData } = useQuery({
     queryKey: ['carsFilters'],
@@ -53,96 +79,126 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ resetForm, values }) => (
-        <Form className={styles.form}>
-          <label className={styles.field}>
-            <span className={styles.label}>Car brand</span>
+    <Formik
+      initialValues={initialValues}
+      validate={validateFilters}
+      onSubmit={handleSubmit}
+    >
+      {({ errors, resetForm, submitCount, touched, values }) => {
+        const mileageError = errors.minMileage ?? errors.maxMileage;
 
-            <span className={styles.selectWrapper}>
-              <Field as="select" name="brand" className={styles.select}>
-                <option value="">Choose a brand</option>
+        const showMileageError =
+          Boolean(mileageError) &&
+          (submitCount > 0 || touched.minMileage || touched.maxMileage);
 
-                {brands.map((brand) => (
-                  <option key={brand} value={brand}>
-                    {brand}
-                  </option>
-                ))}
-              </Field>
+        return (
+          <Form className={styles.form} noValidate>
+            <label className={`${styles.field} ${styles.brandField}`}>
+              <span className={styles.label}>Car brand</span>
 
-              <IoChevronDown className={styles.chevron} aria-hidden="true" />
-            </span>
-          </label>
+              <span className={styles.selectWrapper}>
+                <Field as="select" name="brand" className={styles.select}>
+                  <option value="">Choose a brand</option>
 
-          <label className={styles.field}>
-            <span className={styles.label}>Price/ 1 hour</span>
+                  {brands.map((brand) => (
+                    <option key={brand} value={brand}>
+                      {brand}
+                    </option>
+                  ))}
+                </Field>
 
-            <span className={styles.selectWrapper}>
-              <span className={styles.priceValue} aria-hidden="true">
-                {values.price ? `To $${values.price}` : 'Choose a price'}
+                <IoChevronDown className={styles.chevron} aria-hidden="true" />
               </span>
+            </label>
 
-              <Field
-                as="select"
-                name="price"
-                className={`${styles.select} ${styles.priceSelect}`}
-                aria-label="Price per hour"
+            <label className={`${styles.field} ${styles.priceField}`}>
+              <span className={styles.label}>Price/ 1 hour</span>
+
+              <span className={styles.selectWrapper}>
+                <span className={styles.priceValue} aria-hidden="true">
+                  {values.price ? `To $${values.price}` : 'Choose a price'}
+                </span>
+
+                <Field
+                  as="select"
+                  name="price"
+                  className={`${styles.select} ${styles.priceSelect}`}
+                  aria-label="Price per hour"
+                >
+                  <option value="">Choose a price</option>
+
+                  {prices.map((price) => (
+                    <option key={price} value={price}>
+                      {price}
+                    </option>
+                  ))}
+                </Field>
+
+                <IoChevronDown className={styles.chevron} aria-hidden="true" />
+              </span>
+            </label>
+
+            <div className={`${styles.field} ${styles.mileageField}`}>
+              <span className={styles.label}>Car mileage / km</span>
+
+              <div
+                className={`${styles.mileageInputs} ${
+                  showMileageError ? styles.mileageInputsError : ''
+                }`}
               >
-                <option value="">Choose a price</option>
+                <Field
+                  type="number"
+                  name="minMileage"
+                  min="0"
+                  placeholder="From"
+                  className={styles.mileageInput}
+                  aria-label="Minimum mileage"
+                  aria-invalid={showMileageError}
+                  aria-describedby={
+                    showMileageError ? 'mileage-error' : undefined
+                  }
+                />
 
-                {prices.map((price) => (
-                  <option key={price} value={price}>
-                    {price}
-                  </option>
-                ))}
-              </Field>
+                <Field
+                  type="number"
+                  name="maxMileage"
+                  min="0"
+                  placeholder="To"
+                  className={styles.mileageInput}
+                  aria-label="Maximum mileage"
+                  aria-invalid={showMileageError}
+                  aria-describedby={
+                    showMileageError ? 'mileage-error' : undefined
+                  }
+                />
+              </div>
 
-              <IoChevronDown className={styles.chevron} aria-hidden="true" />
-            </span>
-          </label>
-
-          <div className={styles.field}>
-            <span className={styles.label}>Car mileage / km</span>
-
-            <div className={styles.mileageInputs}>
-              <Field
-                type="number"
-                name="minMileage"
-                min="0"
-                placeholder="From"
-                className={styles.mileageInput}
-                aria-label="Minimum mileage"
-              />
-
-              <Field
-                type="number"
-                name="maxMileage"
-                min="0"
-                placeholder="To"
-                className={styles.mileageInput}
-                aria-label="Maximum mileage"
-              />
+              {showMileageError && (
+                <span id="mileage-error" className={styles.errorText}>
+                  {mileageError}
+                </span>
+              )}
             </div>
-          </div>
 
-          <div className={styles.actions}>
-            <button type="submit" className={styles.searchButton}>
-              Search
-            </button>
+            <div className={styles.actions}>
+              <button type="submit" className={styles.searchButton}>
+                Search
+              </button>
 
-            <button
-              type="button"
-              className={styles.clearButton}
-              onClick={() => {
-                resetForm();
-                onSearch({});
-              }}
-            >
-              Clear filters
-            </button>
-          </div>
-        </Form>
-      )}
+              <button
+                type="button"
+                className={styles.clearButton}
+                onClick={() => {
+                  resetForm();
+                  onSearch({});
+                }}
+              >
+                Clear filters
+              </button>
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }
