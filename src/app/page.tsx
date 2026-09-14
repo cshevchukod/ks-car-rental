@@ -1,7 +1,9 @@
+import Hero from "@/components/Hero/Hero";
+
 export default function Home() {
   return (
     <main>
-      <h1>RentalCar</h1>
+      <Hero />
     </main>
   );
 }

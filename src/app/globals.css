@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 html,
 body {
   min-height: 100%;
@@ -51,5 +47,4 @@ button {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
 }

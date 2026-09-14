@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Manrope } from "next/font/google";
+import Header from "@/components/Header/Header";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -19,7 +21,12 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={manrope.className}>{children}</body>
+      <body className={manrope.className}>
+        <TanStackProvider>
+          <Header />
+          {children}
+        </TanStackProvider>
+      </body>
     </html>
   );
 }

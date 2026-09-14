@@ -1,0 +1,84 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: calc(100vh - 68px);
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.image {
+  z-index: 0;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+  bottom: 60px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 783px;
+  height: 204px;
+  gap: 40px;
+  transform: translateX(-50%);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 783px;
+  height: 120px;
+  gap: 16px;
+}
+
+.title {
+  width: 783px;
+  color: #ffffff;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 72px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.subtitle {
+  width: 585px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 276px;
+  height: 44px;
+  padding: 12px 88px;
+  color: #ffffff;
+  background-color: #00aad4;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  transition: background-color 250ms ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #0095ba;
+}
